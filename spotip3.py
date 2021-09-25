@@ -185,7 +185,7 @@ def download_yt_mp3(song, output_path):
 
 
 def main():
-    playlist_link = "https://open.spotify.com/playlist/5gQqufCoYgEKopKlWMTxux"
+    playlist_link = "YOUR_PLAYLIST_LINK"
     playlist = get_spotify_playlist(playlist_link)
 
     output = "downloads"

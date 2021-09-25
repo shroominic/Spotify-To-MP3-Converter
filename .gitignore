@@ -113,7 +113,6 @@ noresults.txt
 *.txt
 *.json
 
-downloads/
-downloads0/
 test.py
 settings.py
+secrets.py

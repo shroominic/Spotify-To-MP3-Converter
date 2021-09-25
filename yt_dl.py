@@ -3,7 +3,7 @@ from eyed3.id3.frames import ImageFrame
 from ytmusicapi import YTMusic
 import urllib.request
 import subprocess
-import settings
+import secrets
 import difflib
 import spotipy
 import pytube
@@ -16,8 +16,7 @@ path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 youtube_api = YTMusic()
 
-conf = settings['spotify']
-client_credentials_manager = SpotifyClientCredentials(client_id=conf['client_id'], client_secret=conf['client_secret'])
+client_credentials_manager = SpotifyClientCredentials(client_id=secrets.client_id, client_secret=secrets.client_secret)
 spotify_api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 

@@ -185,10 +185,10 @@ def download_yt_mp3(song, output_path):
 
 
 def main():
-    output = "downloads"
-
     playlist_link = "https://open.spotify.com/playlist/5gQqufCoYgEKopKlWMTxux"
     playlist = get_spotify_playlist(playlist_link)
+
+    output = "downloads"
 
     for song in playlist['tracks']:
         clear()

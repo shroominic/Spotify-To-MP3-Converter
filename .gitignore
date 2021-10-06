@@ -116,3 +116,4 @@ noresults.txt
 test.py
 settings.py
 secrets.py
+.DS_Store

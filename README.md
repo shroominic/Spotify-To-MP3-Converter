@@ -19,7 +19,7 @@
 ## Usage
   1. Clone the Repository.
   2. Change into the cloned directory: `cd Spotify-To-MP3-Converter`
-  3. Install the required python packages using pip: `pip install -r requirements` or `pip3 install -r requirements`
+  3. Install the required python packages using pip: `pip install -r requirements`
   4. Install `ffmpeg`:
     - On Linux you can install ffmpeg using your preferred package manager (see https://www.ffmpeg.org/download.html#build-linux)
     - On Windows, you can download builds from https://www.ffmpeg.org/download.html#build-windows

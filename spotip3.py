@@ -61,7 +61,7 @@ def get_spotify_playlist(url):
     print(f"Spotify tracks: {count}/{total}")
 
     while count < total:
-        more_tracks = spotify_apiapi.playlist_items(playlist_id, offset=count, limit=100)
+        more_tracks = spotify_api.playlist_items(playlist_id, offset=count, limit=100)
         tracks += build_results(more_tracks['items'])
         count = count + 100
         print(f"Spotify tracks: {count}/{total}")

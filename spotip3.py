@@ -16,8 +16,10 @@ path = os.path.dirname(os.path.realpath(__file__)) + os.sep
 
 youtube_api = YTMusic()
 
-client_credentials_manager = SpotifyClientCredentials(client_id=secrets.client_id, client_secret=secrets.client_secret)
-spotify_api = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+client_credentials_manager = SpotifyClientCredentials(
+    client_id=secrets.client_id, client_secret=secrets.client_secret)
+spotify_api = spotipy.Spotify(
+    client_credentials_manager=client_credentials_manager)
 
 
 def clear():
@@ -61,7 +63,8 @@ def get_spotify_playlist(url):
     print(f"Spotify tracks: {count}/{total}")
 
     while count < total:
-        more_tracks = spotify_apiapi.playlist_items(playlist_id, offset=count, limit=100)
+        more_tracks = spotify_api.playlist_items(
+            playlist_id, offset=count, limit=100)
         tracks += build_results(more_tracks['items'])
         count = count + 100
         print(f"Spotify tracks: {count}/{total}")
@@ -80,7 +83,8 @@ def get_best_fit_song_id(results, song):
         if 'duration' in res and res['duration']:
             duration_items = res['duration'].split(':')
             duration = int(duration_items[0]) * 60 + int(duration_items[1])
-            duration_match = 1 - abs(duration - song['duration'])  # * 2 / song['duration']
+            # * 2 / song['duration']
+            duration_match = 1 - abs(duration - song['duration'])
 
         title = res['title']
         # for videos,
@@ -91,7 +95,8 @@ def get_best_fit_song_id(results, song):
 
         artists = ' '.join([a['name'] for a in res['artists']])
 
-        title_score[res['videoId']] = difflib.SequenceMatcher(a=title.lower(), b=song['name'].lower()).ratio()
+        title_score[res['videoId']] = difflib.SequenceMatcher(
+            a=title.lower(), b=song['name'].lower()).ratio()
         song['artist'] = song['artist'].replace("\'", "")
         scores = [title_score[res['videoId']],
                   difflib.SequenceMatcher(a=artists.lower(), b=song['artist'].lower()).ratio()]
@@ -100,7 +105,8 @@ def get_best_fit_song_id(results, song):
 
         # add album for songs only
         if res['resultType'] == 'song' and res['album'] is not None:
-            scores.append(difflib.SequenceMatcher(a=res['album']['name'].lower(), b=song['album'].lower()).ratio())
+            scores.append(difflib.SequenceMatcher(
+                a=res['album']['name'].lower(), b=song['album'].lower()).ratio())
         match_score[res['videoId']] = sum(scores) / len(scores)
 
     if len(match_score) == 0:
@@ -176,7 +182,8 @@ def download_yt_mp3(song, output_path):
     audiofile.tag.artist = song['artist']
     audiofile.tag.album = song['album']
     audiofile.tag.title = song['name']
-    audiofile.tag.images.set(ImageFrame.FRONT_COVER, open('cover.jpg', 'rb').read(), 'image/jpeg')
+    audiofile.tag.images.set(ImageFrame.FRONT_COVER, open(
+        'cover.jpg', 'rb').read(), 'image/jpeg')
     audiofile.tag.save()
 
     os.remove('cover.jpg')
